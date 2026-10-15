@@ -1,0 +1,265 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>우리의 결혼식</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+<style>
+/* Layout: one narrow paper column, generous air between sections, single soft-blush world (deliberately single theme) */
+:root{
+  --paper:#FBF8F7;
+  --card:#FFFFFF;
+  --ink:#3F3A3B;
+  --soft:#8C8486;
+  --rose:#C29193;
+  --blush:#F3E7E6;
+  --line:#EBE1E0;
+  --display:"Gowun Batang","Noto Serif KR",serif;
+  --body:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --latin:"Cormorant Garamond","Times New Roman",serif;
+}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:440px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px;display:flex;flex-direction:column;gap:88px}
+.note{margin:16px auto 0;font-size:12px;color:var(--soft);background:var(--blush);border-radius:999px;padding:4px 14px;width:max-content;max-width:100%;text-align:center}
+section{text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
+.eyebrow{font-family:var(--latin);font-style:italic;color:var(--rose);font-size:20px;letter-spacing:.04em;line-height:1}
+h2{font-family:var(--display);font-weight:400;font-size:19px;margin:0;letter-spacing:.02em}
+p{margin:0}
+.muted{color:var(--soft);font-size:14px}
+
+/* Hero */
+.hero{gap:28px;padding-top:40px}
+.hero .eyebrow{font-size:15px;letter-spacing:.3em;text-transform:uppercase;font-style:normal}
+.photo{width:100%;aspect-ratio:4/5;max-width:100%;border-radius:200px 200px 6px 6px;background:var(--blush);position:relative;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+.photo::after{content:"";position:absolute;inset:14px;border:1px solid rgba(255,255,255,.75);border-radius:190px 190px 2px 2px;pointer-events:none}
+.couple{font-family:var(--display);font-size:26px;letter-spacing:.08em;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.couple i{font-family:var(--latin);color:var(--rose);font-size:22px}
+.when{font-size:15px;color:var(--soft);letter-spacing:.04em}
+
+/* Greeting */
+.greet p.poem{font-family:var(--display);font-size:16px;line-height:2.1;max-width:100%;word-break:keep-all;font-size:clamp(14px,4vw,16px)}
+.nw{white-space:nowrap}
+.families{display:grid;gap:6px;font-size:15px;margin-top:12px}
+.families b{font-family:var(--display);font-weight:700;margin-left:4px}
+
+/* Calendar */
+.cal{width:100%;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:28px 20px}
+.cal-head{font-family:var(--display);font-size:17px;margin-bottom:6px}
+.cal-sub{color:var(--soft);font-size:13px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px 0;font-variant-numeric:tabular-nums;font-size:14px}
+.grid .dow{font-size:12px;color:var(--soft);padding-bottom:8px}
+.grid .sun{color:#C9767A}
+.grid div{height:34px;display:flex;align-items:center;justify-content:center}
+.grid .day-on span{width:34px;height:34px;border-radius:50%;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center}
+.dday{margin-top:22px;font-size:14px;color:var(--soft)}
+.dday b{color:var(--rose);font-weight:400;font-family:var(--display);font-size:16px}
+.count{display:flex;justify-content:center;gap:10px;margin-top:14px;font-variant-numeric:tabular-nums}
+.count div{min-width:58px;padding:8px 0;background:var(--blush);border-radius:6px;display:flex;flex-direction:column;line-height:1.3}
+.count strong{font-family:var(--display);font-weight:400;font-size:20px}
+.count small{font-size:11px;color:var(--soft);letter-spacing:.06em}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%}
+.gallery button{appearance:none;border:0;padding:0;margin:0;aspect-ratio:3/4;max-width:100%;border-radius:4px;overflow:hidden;background:var(--blush);cursor:zoom-in;display:block}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.gallery button:hover img{transform:scale(1.04)}
+.gallery button:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.lb{position:fixed;inset:0;background:rgba(28,24,25,.94);display:flex;align-items:center;justify-content:center;z-index:10;padding:calc(56px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(56px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:2px;user-select:none;-webkit-user-drag:none}
+.lb button{position:absolute;appearance:none;border:0;background:none;color:#fff;font:inherit;cursor:pointer;opacity:.85;width:48px;height:48px;font-size:26px;line-height:1;display:flex;align-items:center;justify-content:center}
+.lb button:focus-visible{outline:2px solid #fff;border-radius:50%}
+.lb .x{top:calc(6px + env(safe-area-inset-top,0px));right:calc(6px + env(safe-area-inset-right,0px));font-size:30px}
+.lb .pv{left:calc(2px + env(safe-area-inset-left,0px));top:50%;transform:translateY(-50%)}
+.lb .nx{right:calc(2px + env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%)}
+.lb .ct{position:absolute;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;color:rgba(255,255,255,.75);font-size:13px;font-variant-numeric:tabular-nums}
+
+/* Location */
+.venue{font-family:var(--display);font-size:17px}
+.addr-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.maps{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+.btn{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:14px;padding:11px 12px;border-radius:6px;text-decoration:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:border-color .2s,background .2s}
+.btn:hover{border-color:var(--rose)}
+.btn:focus-visible,summary:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.btn.sm{padding:4px 10px;font-size:12px;color:var(--soft)}
+.ways{width:100%;text-align:left;display:grid;gap:14px;font-size:14px;border-top:1px solid var(--line);padding-top:20px}
+.ways b{display:block;font-family:var(--display);font-weight:400;color:var(--rose);font-size:13px;letter-spacing:.06em}
+
+/* Accounts */
+.acc{width:100%;display:grid;gap:8px;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:6px}
+summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-size:15px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:8px;height:8px;border-right:1px solid var(--soft);border-bottom:1px solid var(--soft);transform:rotate(45deg) translateY(-3px);transition:transform .25s}
+details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
+.acct{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;border-top:1px solid var(--line);font-size:14px}
+.acct div{min-width:0}
+.acct small{display:block;color:var(--soft);font-size:12px}
+.acct .num{font-variant-numeric:tabular-nums;word-break:break-all}
+
+.closing p{font-family:var(--display);font-size:16px;line-height:2}
+.foot{font-family:var(--latin);font-style:italic;color:var(--rose);font-size:15px;text-align:center;letter-spacing:.06em}
+
+.toast{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translate(-50%,12px);background:var(--ink);color:#fff;font-size:13px;padding:9px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="note">시안이에요 · 계좌 정보는 아직 예시입니다</div>
+
+  <section class="hero">
+    <div class="eyebrow">Wedding Invitation</div>
+    <div class="photo"><img src="photos/main.jpg" alt="창가에 앉아 마주 보는 유현민과 권지수"></div>
+    <div class="couple"><span id="groom">유현민</span><i>&amp;</i><span id="bride">권지수</span></div>
+    <p class="when" id="whenText"></p>
+  </section>
+
+  <section class="greet">
+    <div class="eyebrow">Invitation</div>
+    <h2>소중한 분들을 초대합니다</h2>
+    <p class="poem">두 해 동안 서로를 알아가던 인연이<br>어느새 가장 편안한 사랑이 되었습니다.<br><br>이제 평생을 함께하는 부부가 되어<br><span class="nw">서로를 아끼며 따뜻한 날들을 만들어가려 합니다.</span><br><br>저희의 새로운 시작에 함께하시어<br>축복해 주시면 감사하겠습니다.</p>
+    <div class="families">
+      <p><span class="muted">신랑</span><b>유현민</b></p>
+      <p><span class="muted">신부</span><b>권지수</b></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">The Day</div>
+    <div class="cal">
+      <div class="cal-head" id="calHead"></div>
+      <div class="cal-sub" id="calSub"></div>
+      <div class="grid" id="grid"></div>
+      <div class="count" id="count"></div>
+      <p class="dday" id="dday"></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Gallery</div>
+    <h2>우리의 순간들</h2>
+    <div class="gallery" id="gallery"></div>
+    <p class="muted">사진을 누르면 크게 볼 수 있어요</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Location</div>
+    <h2>오시는 길</h2>
+    <p class="venue">AW컨벤션 안산 · 테라스볼룸</p>
+    <div class="addr-row">
+      <span class="muted" id="addr">경기 안산시 단원구 광덕1로 171</span>
+      <button class="btn sm" id="copyAddr" type="button">주소 복사</button>
+    </div>
+    <div class="maps">
+      <a class="btn" id="naver" target="_blank" rel="noopener">네이버 지도</a>
+      <a class="btn" id="kakao" target="_blank" rel="noopener">카카오맵</a>
+    </div>
+    <div class="ways">
+      <div><b>자가용</b>내비게이션에 ‘AW컨벤션 안산’ 또는 ‘광덕1로 171’을 검색해 주세요</div>
+      <div><b>주차</b>주차 2시간 무료 · 이후 30분당 1,000원</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">With Heart</div>
+    <h2>마음 전하실 곳</h2>
+    <p class="muted">참석이 어려우신 분들을 위해 안내드립니다</p>
+    <div class="acc">
+      <details>
+        <summary>신랑측 계좌</summary>
+        <div class="acct"><div><small>신랑 유현민 · 은행명</small><span class="num">000-00-0000-000</span></div><button class="btn sm copy" type="button" data-v="국민은행 000-00-0000-000">복사</button></div>
+        <div class="acct"><div><small>신랑 아버지 · 은행명</small><span class="num">000-000-000000</span></div><button class="btn sm copy" type="button" data-v="신한은행 000-000-000000">복사</button></div>
+      </details>
+      <details>
+        <summary>신부측 계좌</summary>
+        <div class="acct"><div><small>신부 권지수 · 은행명</small><span class="num">0000-000-000000</span></div><button class="btn sm copy" type="button" data-v="우리은행 0000-000-000000">복사</button></div>
+        <div class="acct"><div><small>신부 어머니 · 은행명</small><span class="num">000-000000-00000</span></div><button class="btn sm copy" type="button" data-v="하나은행 000-000000-00000">복사</button></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="closing">
+    <p>귀한 걸음 해주셔서<br>진심으로 감사드립니다.</p>
+    <div class="foot">Hyunmin &amp; Jisu</div>
+  </section>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="사진 크게 보기">
+  <img id="lbImg" alt="">
+  <button class="x" id="lbX" type="button" aria-label="닫기">×</button>
+  <button class="pv" id="lbP" type="button" aria-label="이전 사진">‹</button>
+  <button class="nx" id="lbN" type="button" aria-label="다음 사진">›</button>
+  <div class="ct" id="lbC"></div>
+</div>
+
+<script>
+const WEDDING = { y:2027, m:2, d:14, hh:11, mm:0, venue:"AW컨벤션 안산" };
+const DOW = ["일","월","화","수","목","금","토"];
+const date = new Date(WEDDING.y, WEDDING.m-1, WEDDING.d, WEDDING.hh, WEDDING.mm);
+const ampm = WEDDING.hh < 12 ? "오전" : "오후";
+const h12 = ((WEDDING.hh + 11) % 12) + 1;
+const timeStr = `${ampm} ${h12}시${WEDDING.mm ? " " + WEDDING.mm + "분" : ""}`;
+document.getElementById("whenText").textContent = `${WEDDING.y}. ${WEDDING.m}. ${WEDDING.d} ${DOW[date.getDay()]}요일 ${timeStr}`;
+document.getElementById("calHead").textContent = `${WEDDING.y}년 ${WEDDING.m}월 ${WEDDING.d}일`;
+document.getElementById("calSub").textContent = `${DOW[date.getDay()]}요일 ${timeStr}`;
+
+const grid = document.getElementById("grid");
+DOW.forEach((d,i)=>{const e=document.createElement("div");e.className="dow"+(i===0?" sun":"");e.textContent=d;grid.appendChild(e);});
+const first = new Date(WEDDING.y, WEDDING.m-1, 1).getDay();
+const days = new Date(WEDDING.y, WEDDING.m, 0).getDate();
+for(let i=0;i<first;i++) grid.appendChild(document.createElement("div"));
+for(let d=1; d<=days; d++){
+  const e=document.createElement("div");
+  const col=(first+d-1)%7;
+  if(d===WEDDING.d){e.className="day-on";e.innerHTML=`<span>${d}</span>`;}
+  else {e.textContent=d; if(col===0) e.className="sun";}
+  grid.appendChild(e);
+}
+
+function tick(){
+  const now=new Date(); let diff=date-now;
+  const c=document.getElementById("count"), t=document.getElementById("dday");
+  if(diff<=0){c.hidden=true;t.innerHTML="소중한 날을 함께해 주셔서 감사합니다";return;}
+  const D=Math.floor(diff/864e5); diff-=D*864e5;
+  const H=Math.floor(diff/36e5); diff-=H*36e5;
+  const M=Math.floor(diff/6e4); const S=Math.floor((diff-M*6e4)/1e3);
+  c.innerHTML=[[D,"DAYS"],[H,"HOUR"],[M,"MIN"],[S,"SEC"]].map(([v,l])=>`<div><strong>${String(v).padStart(2,"0")}</strong><small>${l}</small></div>`).join("");
+  const dd=Math.ceil((new Date(WEDDING.y,WEDDING.m-1,WEDDING.d)-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
+  t.innerHTML=`현민 ♥ 지수의 결혼식이 <b>${dd}일</b> 남았습니다`;
+}
+tick(); setInterval(tick,1000);
+
+const PHOTOS=["p11","p16","p03","p06","p09","p10","p12","p13","p05","p15","p07","p08","p04","p14","p01"].map(p=>`photos/${p}.jpg`);
+const gal=document.getElementById("gallery");
+PHOTOS.forEach((src,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label",`사진 ${i+1} 크게 보기`);b.innerHTML=`<img src="${src}" alt="" loading="lazy">`;b.addEventListener("click",()=>openLb(i));gal.appendChild(b);});
+const lb=document.getElementById("lb"),lbImg=document.getElementById("lbImg"),lbC=document.getElementById("lbC");
+let cur=0,lastFocus=null;
+function showLb(i){cur=(i+PHOTOS.length)%PHOTOS.length;lbImg.src=PHOTOS[cur];lbC.textContent=`${cur+1} / ${PHOTOS.length}`;}
+function openLb(i){lastFocus=document.activeElement;showLb(i);lb.hidden=false;document.body.style.overflow="hidden";document.getElementById("lbX").focus();}
+function closeLb(){lb.hidden=true;document.body.style.overflow="";if(lastFocus)lastFocus.focus();}
+document.getElementById("lbX").addEventListener("click",closeLb);
+document.getElementById("lbP").addEventListener("click",e=>{e.stopPropagation();showLb(cur-1);});
+document.getElementById("lbN").addEventListener("click",e=>{e.stopPropagation();showLb(cur+1);});
+lb.addEventListener("click",e=>{if(e.target===lb)closeLb();});
+document.addEventListener("keydown",e=>{if(lb.hidden)return;if(e.key==="Escape")closeLb();if(e.key==="ArrowLeft")showLb(cur-1);if(e.key==="ArrowRight")showLb(cur+1);});
+let sx=null;
+lb.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;},{passive:true});
+lb.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)showLb(cur+(dx<0?1:-1));sx=null;});
+
+const q=encodeURIComponent(WEDDING.venue);
+document.getElementById("naver").href="https://map.naver.com/p/search/"+q;
+document.getElementById("kakao").href="https://map.kakao.com/?q="+q;
+
+const toast=document.getElementById("toast"); let tt;
+function show(msg){toast.textContent=msg;toast.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("show"),1800);}
+function copy(text,label){
+  const fallback=()=>{const r=document.createElement("textarea");r.value=text;document.body.appendChild(r);r.select();try{document.execCommand("copy");show(label+" 복사됐어요");}catch(e){show("길게 눌러 직접 복사해 주세요");}r.remove();};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>show(label+" 복사됐어요"),fallback);}else fallback();
+}
+document.getElementById("copyAddr").addEventListener("click",()=>copy(document.getElementById("addr").textContent,"주소가"));
+document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>copy(b.dataset.v,"계좌번호가")));
+</script>
+
+</body></html>
