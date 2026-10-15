@@ -1,1 +1,0 @@
-# jshm1207.github.io
