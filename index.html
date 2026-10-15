@@ -290,7 +290,7 @@ function tick(){
 }
 tick(); setInterval(tick,1000);
 
-const PHOTOS=["p11","p16","p03","p06","p09","p10","p12","p13","p05","p15","p07","p08","p04","p14","p01"].map(p=>`photos/${p}.jpg`);
+const PHOTOS=["p16","p03","p11","p17","p20","p06","p09","p10","p12","p13","p05","p18","p15","p19","p21","p07","p08","p04","p14","p01"].map(p=>`photos/${p}.jpg`);
 const gal=document.getElementById("gallery");
 PHOTOS.forEach((src,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label",`사진 ${i+1} 크게 보기`);b.innerHTML=`<img src="${src}" alt="" loading="lazy">`;b.addEventListener("click",()=>openLb(i));gal.appendChild(b);});
 const lb=document.getElementById("lb"),lbImg=document.getElementById("lbImg"),lbC=document.getElementById("lbC");
