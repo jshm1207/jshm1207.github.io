@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <title>유현민 ♥ 권지수 결혼합니다</title>
 <meta name="description" content="2027년 2월 14일 일요일 오전 11시 · AW컨벤션 안산 테라스볼룸">
 <!-- link preview for KakaoTalk / 문자 / SNS -->
@@ -38,6 +38,11 @@ img{max-width:100%}
   --latin:"Cormorant Garamond","Times New Roman",serif;
 }
 html{background:var(--paper)}
+/* never let anything push the page sideways on a phone */
+html,body{overflow-x:hidden;overflow-x:clip;max-width:100%}
+/* first open: the whole invitation fades in softly */
+@keyframes introFade{from{opacity:0}to{opacity:1}}
+.stage{animation:introFade 1.8s ease both}
 body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
 .wrap{max-width:440px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px;display:flex;flex-direction:column;gap:88px}
 .note{margin:16px auto 0;font-size:12px;color:var(--soft);background:var(--blush);border-radius:999px;padding:4px 14px;width:max-content;max-width:100%;text-align:center}
@@ -65,7 +70,7 @@ p{margin:0}
 .families b{font-family:var(--display);font-weight:700;margin-left:4px}
 
 /* Calendar */
-.cal{width:100%;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:28px 20px}
+.cal{width:100%;box-sizing:border-box;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:28px 20px}
 .cal-head{font-family:var(--display);font-size:17px;margin-bottom:6px}
 .cal-sub{color:var(--soft);font-size:13px;margin-bottom:18px}
 .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px 0;font-variant-numeric:tabular-nums;font-size:14px}
