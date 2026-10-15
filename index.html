@@ -129,13 +129,11 @@ details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
 
 .toast{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translate(-50%,12px);background:var(--ink);color:#fff;font-size:13px;padding:9px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-/* On wide screens (computer), show the invitation inside a phone-shaped frame that scrolls on its own */
-@media (min-width:640px) and (min-height:600px){
-  html,body{height:100%;overflow:hidden}
-  body{background:radial-gradient(120% 90% at 50% 0%,#EEF5FB 0%,#E0EBF5 60%,#D4E2EF 100%)}
-  .stage{height:100%;display:flex;align-items:center;justify-content:center;padding-block:24px}
-  .wrap{width:390px;max-width:100%;height:min(844px,100%);overflow-y:auto;overscroll-behavior:contain;background:var(--paper);border:10px solid #fff;border-radius:48px;box-shadow:0 30px 70px -20px rgba(70,105,140,.35),0 0 0 1px rgba(70,105,140,.08);scrollbar-width:none}
-  .wrap::-webkit-scrollbar{display:none}
+/* On a computer: one long column down the middle that scrolls with the page (no phone frame); soft blue backdrop around it */
+@media (min-width:640px){
+  html{background:#D4E2EF}
+  body{background:radial-gradient(120% 90% at 50% 0%,#EEF5FB 0%,#E0EBF5 60%,#D4E2EF 100%) fixed;min-height:100vh}
+  .wrap{min-height:100vh;background:var(--paper);box-shadow:0 0 60px -12px rgba(70,105,140,.28),0 0 0 1px rgba(70,105,140,.06)}
 }
 /* Scroll reveal, both directions: below the screen a block waits lower down, above the screen it waits higher up */
 .rv-on .rv{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1);transition-delay:0s}
@@ -319,7 +317,7 @@ lb.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches
         el.classList.remove("in");
         el.classList.toggle("above",e.boundingClientRect.bottom<=top+1);
       }
-    }),{root:framed.matches?wrap:null,threshold:[0,.15]});
+    }),{root:null,threshold:[0,.15]});
     els.forEach(el=>io.observe(el));
   }
   watch();
