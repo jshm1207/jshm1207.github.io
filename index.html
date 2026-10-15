@@ -136,8 +136,18 @@ details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
 @media (min-width:640px){
   html{background:#D4E2EF}
   body{background:radial-gradient(120% 90% at 50% 0%,#EEF5FB 0%,#E0EBF5 60%,#D4E2EF 100%) fixed;min-height:100vh}
-  .wrap{min-height:100vh;background:var(--paper);box-shadow:0 0 60px -12px rgba(70,105,140,.28),0 0 0 1px rgba(70,105,140,.06)}
+  .wrap{min-height:100vh;background:#FBFDFF;box-shadow:0 0 60px -12px rgba(70,105,140,.28),0 0 0 1px rgba(70,105,140,.06)}
 }
+/* Background music toggle: small speaker, top right (on a computer it sits at the column's top-right corner) */
+.bgm{position:fixed;z-index:9;top:calc(8px + env(safe-area-inset-top,0px));right:max(calc(8px + env(safe-area-inset-right,0px)),calc((100vw - 472px) / 2 + 8px));width:40px;height:40px;padding:0;border:0;background:none;color:var(--rose);display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.bgm svg{width:22px;height:22px;display:block;filter:drop-shadow(0 0 2px rgba(255,255,255,.9)) drop-shadow(0 0 1px rgba(255,255,255,.9))}
+.bgm .off{display:none}
+.bgm[aria-pressed="false"] .on{display:none}
+.bgm[aria-pressed="false"] .off{display:block}
+.bgm[aria-pressed="false"]{color:var(--soft)}
+.bgm:focus-visible{outline:2px solid var(--rose);outline-offset:0;border-radius:6px}
+.bgm[aria-pressed="true"] .wave{animation:wave 1.6s ease-in-out infinite}
+@keyframes wave{0%,100%{opacity:1}50%{opacity:.35}}
 /* Scroll reveal, both directions: below the screen a block waits lower down, above the screen it waits higher up */
 .rv-on .rv{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1);transition-delay:0s}
 .rv-on .rv.above{transform:translateY(-40px)}
@@ -229,6 +239,11 @@ details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
   </section>
 </div>
 </div>
+<button class="bgm" id="bgm" type="button" aria-pressed="false" aria-label="배경음악 켜기">
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor" fill-opacity=".15"/><path class="wave" d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path class="wave" d="M18 6.5a7.8 7.8 0 0 1 0 11"/></svg>
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor" fill-opacity=".1"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+</button>
+<audio id="bgmAudio" src="music/bgm.mp3" loop preload="auto"></audio>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="사진 크게 보기">
   <img id="lbImg" alt="">
@@ -397,6 +412,37 @@ lb.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches
     else if(!e.isIntersecting&&inView){inView=false;stop();}
   }).observe(cv);
   document.addEventListener("visibilitychange",()=>{if(document.hidden)stop();else if(inView)begin();});
+})();
+
+// Background music: the couple's chosen song. Browsers only allow sound after the visitor touches the page,
+// so it tries to start right away and otherwise starts on the first tap anywhere. The speaker turns it on and off.
+(function(){
+  const au=document.getElementById("bgmAudio"), bt=document.getElementById("bgm");
+  if(!au||!bt)return;
+  let userOff=false, resumeOnShow=false, fadeT=0;
+  const TARGET=.55;
+  function ui(on){bt.setAttribute("aria-pressed",on?"true":"false");bt.setAttribute("aria-label",on?"배경음악 끄기":"배경음악 켜기");}
+  function fadeIn(){clearInterval(fadeT);au.volume=0;fadeT=setInterval(()=>{au.volume=Math.min(TARGET,au.volume+.04);if(au.volume>=TARGET)clearInterval(fadeT);},90);}
+  function play(){try{const p=au.play();fadeIn();if(p&&p.then)p.then(()=>ui(true)).catch(()=>ui(false));else ui(!au.paused);}catch(e){ui(false);}}
+  const EVS=["pointerdown","touchend","keydown"];
+  function firstTouch(e){
+    if(bt.contains(e.target))return;            // the speaker button handles itself
+    EVS.forEach(ev=>removeEventListener(ev,firstTouch,true));
+    if(!userOff&&au.paused)play();
+  }
+  EVS.forEach(ev=>addEventListener(ev,firstTouch,true));
+  bt.addEventListener("click",e=>{
+    e.stopPropagation();
+    EVS.forEach(ev=>removeEventListener(ev,firstTouch,true));
+    if(au.paused){userOff=false;play();}else{userOff=true;au.pause();ui(false);}
+  });
+  // pause when the guest leaves the page or switches apps, resume when they come back
+  document.addEventListener("visibilitychange",()=>{
+    if(document.hidden){resumeOnShow=!au.paused;au.pause();}
+    else if(resumeOnShow&&!userOff){play();}
+  });
+  au.addEventListener("pause",()=>ui(false));au.addEventListener("play",()=>ui(true));
+  play();                                         // works where the browser allows sound without a tap
 })();
 
 const q=encodeURIComponent(WEDDING.venue);
