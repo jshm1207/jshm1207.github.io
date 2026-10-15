@@ -121,8 +121,11 @@ summary::after{content:"";width:8px;height:8px;border-right:1px solid var(--soft
 details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
 .acct{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;border-top:1px solid var(--line);font-size:14px}
 .acct div{min-width:0}
-.acct small{display:block;color:var(--soft);font-size:12px}
-.acct .num{font-variant-numeric:tabular-nums;word-break:break-all}
+.side{background:var(--card);border:1px solid var(--line);border-radius:6px}
+.side-h{padding:14px 18px;font-family:var(--display);font-size:15px;color:var(--rose)}
+.acct small{display:block;color:var(--ink);font-size:13.5px;line-height:1.6}
+.acct .num{display:block;color:var(--ink);font-size:15.5px;letter-spacing:.02em;font-variant-numeric:tabular-nums;word-break:break-all}
+.acct .btn.sm{flex:none}
 
 .closing p{font-family:var(--display);font-size:16px;line-height:2}
 .foot{font-family:var(--latin);font-style:italic;color:var(--rose);font-size:15px;text-align:center;letter-spacing:.06em}
@@ -206,17 +209,17 @@ details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
     <h2>마음 전하실 곳</h2>
     <p class="muted">참석이 어려우신 분들을 위해 안내드립니다</p>
     <div class="acc">
-      <details>
-        <summary>신랑측 계좌</summary>
+      <div class="side">
+        <div class="side-h">신랑측 계좌</div>
         <div class="acct"><div><small>신랑 유현민 · 우리은행</small><span class="num">1002-655-575236</span></div><button class="btn sm copy" type="button" data-v="1002-655-575236">복사</button></div>
         <div class="acct"><div><small>신랑 어머니 노혜진 · 신협</small><span class="num">131-017-494152</span></div><button class="btn sm copy" type="button" data-v="131-017-494152">복사</button></div>
-      </details>
-      <details>
-        <summary>신부측 계좌</summary>
+      </div>
+      <div class="side">
+        <div class="side-h">신부측 계좌</div>
         <div class="acct"><div><small>신부 권지수 · 하나은행</small><span class="num">321-910415-65107</span></div><button class="btn sm copy" type="button" data-v="321-910415-65107">복사</button></div>
         <div class="acct"><div><small>신부 아버지 권용배 · 국민은행</small><span class="num">626402-01-729793</span></div><button class="btn sm copy" type="button" data-v="626402-01-729793">복사</button></div>
         <div class="acct"><div><small>신부 어머니 송남희 · 농협</small><span class="num">207080-51-109578</span></div><button class="btn sm copy" type="button" data-v="207080-51-109578">복사</button></div>
-      </details>
+      </div>
     </div>
   </section>
 
@@ -322,6 +325,10 @@ lb.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches
   }
   watch();
   if(framed.addEventListener)framed.addEventListener("change",watch);
+  // safety net for in-app browsers (KakaoTalk etc.): whatever is on screen is always shown
+  function sweep(){const vh=innerHeight;els.forEach(el=>{if(el.classList.contains("in"))return;const r=el.getBoundingClientRect();if(r.top<vh*.95&&r.bottom>vh*.03){el.classList.remove("above");el.classList.add("in");}});}
+  let tk=0;addEventListener("scroll",()=>{if(!tk)tk=requestAnimationFrame(()=>{tk=0;sweep();});},{passive:true});
+  addEventListener("resize",sweep);setTimeout(sweep,700);
 })();
 
 // Twinkling sparkles over the main photo
