@@ -122,7 +122,14 @@ details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
 .acct{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;border-top:1px solid var(--line);font-size:14px}
 .acct div{min-width:0}
 .side{background:var(--card);border:1px solid var(--line);border-radius:6px}
-.side-h{padding:14px 18px;font-family:var(--display);font-size:15px;color:var(--rose)}
+.side-h{appearance:none;width:100%;border:0;background:none;padding:15px 18px;margin:0;font:inherit;font-family:var(--display);font-size:15px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
+.side-h i{width:8px;height:8px;border-right:1.5px solid var(--rose);border-bottom:1.5px solid var(--rose);transform:rotate(45deg) translateY(-3px);transition:transform .3s}
+.side-h[aria-expanded="true"] i{transform:rotate(-135deg) translateY(-1px)}
+.side-h:focus-visible{outline:2px solid var(--rose);outline-offset:-2px;border-radius:6px}
+/* folds open smoothly; content stays in the page so it can never get stuck hidden */
+.side-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.side.open .side-b{grid-template-rows:1fr}
+.side-in{overflow:hidden;min-height:0}
 .acct small{display:block;color:var(--ink);font-size:13.5px;line-height:1.6}
 .acct .num{display:block;color:var(--ink);font-size:15.5px;letter-spacing:.02em;font-variant-numeric:tabular-nums;word-break:break-all}
 .acct .btn.sm{flex:none}
@@ -223,15 +230,19 @@ details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
     <p class="muted">참석이 어려우신 분들을 위해 안내드립니다</p>
     <div class="acc">
       <div class="side">
-        <div class="side-h">신랑측 계좌</div>
+        <button class="side-h" type="button" aria-expanded="false" aria-controls="acc1"><span>신랑측 계좌</span><i aria-hidden="true"></i></button>
+        <div class="side-b" id="acc1"><div class="side-in">
         <div class="acct"><div><small>신랑 유현민 · 우리은행</small><span class="num">1002-655-575236</span></div><button class="btn sm copy" type="button" data-v="1002-655-575236">복사</button></div>
-        <div class="acct"><div><small>신랑 어머니 노혜진 · 신협</small><span class="num">131-017-494152</span></div><button class="btn sm copy" type="button" data-v="131-017-494152">복사</button></div>
+        <div class="acct"><div><small>신랑 어머니 노혜진 · 신협</small><span class="num">131-017-494152</span></div><button class="btn sm copy" type="button" data-v="131-017-494152">복사</button></div></div>
+      </div>
       </div>
       <div class="side">
-        <div class="side-h">신부측 계좌</div>
+        <button class="side-h" type="button" aria-expanded="false" aria-controls="acc2"><span>신부측 계좌</span><i aria-hidden="true"></i></button>
+        <div class="side-b" id="acc2"><div class="side-in">
         <div class="acct"><div><small>신부 권지수 · 하나은행</small><span class="num">321-910415-65107</span></div><button class="btn sm copy" type="button" data-v="321-910415-65107">복사</button></div>
         <div class="acct"><div><small>신부 아버지 권용배 · 국민은행</small><span class="num">626402-01-729793</span></div><button class="btn sm copy" type="button" data-v="626402-01-729793">복사</button></div>
-        <div class="acct"><div><small>신부 어머니 송남희 · 농협</small><span class="num">207080-51-109578</span></div><button class="btn sm copy" type="button" data-v="207080-51-109578">복사</button></div>
+        <div class="acct"><div><small>신부 어머니 송남희 · 농협</small><span class="num">207080-51-109578</span></div><button class="btn sm copy" type="button" data-v="207080-51-109578">복사</button></div></div>
+      </div>
       </div>
     </div>
   </section>
@@ -293,7 +304,7 @@ function tick(){
 }
 tick(); setInterval(tick,1000);
 
-const PHOTOS=["p16","p03","p11","p17","p20","p06","p09","p10","p12","p13","p05","p18","p15","p19","p21","p07","p08","p04","p14","p01"].map(p=>`photos/${p}.jpg`);
+const PHOTOS=["p16","p03","p11","p17","p20","p22","p18","p15","p19","p21","p07","p08","p06","p09","p10","p12","p13","p05","p04","p14","p01"].map(p=>`photos/${p}.jpg`);
 const gal=document.getElementById("gallery");
 PHOTOS.forEach((src,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label",`사진 ${i+1} 크게 보기`);b.innerHTML=`<img src="${src}" alt="" loading="lazy">`;b.addEventListener("click",()=>openLb(i));gal.appendChild(b);});
 const lb=document.getElementById("lb"),lbImg=document.getElementById("lbImg"),lbC=document.getElementById("lbC");
@@ -452,6 +463,12 @@ lb.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches
   edge();
   play();                                         // works where the browser allows sound without a tap
 })();
+
+// account sections: tap 신랑측 / 신부측 to open or close
+document.querySelectorAll(".side-h").forEach(h=>h.addEventListener("click",()=>{
+  const box=h.closest(".side"), open=!box.classList.contains("open");
+  box.classList.toggle("open",open); h.setAttribute("aria-expanded",open?"true":"false");
+}));
 
 const q=encodeURIComponent(WEDDING.venue);
 document.getElementById("naver").href="https://map.naver.com/p/search/"+q;
