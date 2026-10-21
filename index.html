@@ -472,7 +472,16 @@ lb.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches
   addEventListener("scroll",()=>{if(!tk)tk=requestAnimationFrame(()=>{tk=0;edge();});},{passive:true});
   edge();
   // music starts the moment the invitation appears (right away where the browser allows, otherwise on the first tap)
-  if(introOn)addEventListener("introdone",()=>{introOn=false;if(!userOff&&au.paused)play();},{once:true});
+  if(introOn){
+    // start the song silently while the words are written (the moment phones are most likely to allow it),
+    // then rewind and bring the sound up as the invitation appears
+    try{au.volume=0;const p=au.play();if(p&&p.catch)p.catch(()=>{});}catch(e){}
+    addEventListener("introdone",()=>{
+      introOn=false; if(userOff)return;
+      if(!au.paused){try{au.currentTime=0;}catch(e){} fadeIn(); ui(true);}
+      else play();                                // otherwise it starts on the first tap
+    },{once:true});
+  }
   else play();
 })();
 
